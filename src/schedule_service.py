@@ -63,9 +63,10 @@ class ScheduleService():
             self.logger.info(f'RESULT arquivo {result}')
             return result["status_agendamento"]
         except Exception as e:
-            self.logger.info(e.response)
+            self.logger.info(e.response.ResponseMetadata.HTTPStatusCode)
             self.logger.info(e)
-            if e.response['Error']['Code'] == '404':
+            
+            if(e.response.ResponseMetadata.HTTPStatusCode == 404):
                 return "Não encontrado"
             else:
                 self.logger.error(f'Erro ao ler o arquivo {agendamento["id"]} do S3: {str(e)}')
