@@ -56,12 +56,12 @@ class ScheduleService():
         try:
             response = self.s3_client.getObject(
                 Bucket=self.bucket_name,
-                Key=f"{id}.pkl"
+                Key=f"{agendamento["id"]}.pkl"
             )
             conteudo = response['Body'].read().decode('utf-8')
             result = json.loads(conteudo)
             self.logger.info(f'RESULT arquivo {result}')
             return result["status_agendamento"]
         except Exception as e:
-            print(f'Erro ao ler o arquivo {id} do S3: {str(e)}')
+            print(f'Erro ao ler o arquivo {agendamento["id"]} do S3: {str(e)}')
             return None
