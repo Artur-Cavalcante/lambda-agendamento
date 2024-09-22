@@ -17,6 +17,7 @@ class ScheduleService():
         self.s3_client = boto3.client('s3')
     
     def solicitar_agendamento(self, agendamento: dict) -> str:
+        self.logger.error('Iniciando agendamento')
         id = str(uuid.uuid4())  
         horario: str = agendamento["horario"]   
         crm_medico: str = agendamento["crm_medico"]
@@ -67,6 +68,7 @@ class ScheduleService():
             self.logger.info(f'RESULT arquivo {result}')
             return result["status_agendamento"]
         except Exception as e:
+            self.logger.error('Ocorreu error ao verificar status agendamento')
             if(e.response["ResponseMetadata"]["HTTPStatusCode"] == 404):
                 self.logger.info(f"Não foi encontrado agendamento com id {agendamento['id']}")
                 return f"Não foi encontrado agendamento com id {agendamento['id']}"
