@@ -25,6 +25,7 @@ class ScheduleService():
             'cpf_paciente': agendamento["cpf_paciente"],
             'status_agendamento': "EmAnalise",
             'nome_paciente': agendamento["nome_paciente"],
+            'nome_medico': agendamento["nome_medico"],
             'email_paciente': agendamento["email_paciente"],
             'email_medico': agendamento["email_medico"]
         }
