@@ -16,9 +16,10 @@ class ScheduleService():
     
     def solicitar_agendamento(self, agendamento) -> str:
         self.logger.info(f'Iniciando agendamento {agendamento}')
+        id = str(uuid.uuid4())
 
         json_agendamento = {
-            'id': str(uuid.uuid4()),
+            'id': id,
             'horario': agendamento["horario"],
             'crm_medico': agendamento["crm_medico"],
             'cpf_paciente': agendamento["cpf_paciente"],
