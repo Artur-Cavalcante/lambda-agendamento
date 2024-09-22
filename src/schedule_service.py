@@ -54,7 +54,7 @@ class ScheduleService():
 
     def verificar_status_agendamento(self, agendamento: dict) -> int:
         try:
-            response = self.s3_client.getObject(
+            response = self.s3_client.get_object(
                 Bucket=self.bucket_name,
                 Key=f"{agendamento["id"]}.pkl"
             )
