@@ -1,0 +1,5 @@
+boto3
+requests
+aws_lambda_powertools
+uuid
+pickle
