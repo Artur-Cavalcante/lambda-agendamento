@@ -21,12 +21,12 @@ jobs:
 
       - name: Zip
         run: |
-          zip -r -9 lambda-notificacao-agendamento.zip *
+          zip -r -9 lambda-agendamento.zip *
 
       - name: Update
         uses: kazimanzurrashid/aws-lambda-update-action@v2.0.2
         with:
-          zip-file: lambda-notificacao-agendamento.zip
+          zip-file: lambda-agendamento.zip
         env:
           AWS_REGION: "us-east-2"
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
