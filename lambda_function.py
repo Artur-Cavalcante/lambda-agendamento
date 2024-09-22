@@ -36,15 +36,14 @@ def lambda_handler(event: APIGatewayProxyEvent, context) -> dict:
         }
 
 
-# event = {
+# {
+#     "httpMethod": "GET",
+#     "path": "/verificar_status_agendamento",
+#     "body": "{\"id\": \"123123\"}"
+# }
+
+# {
 #     "httpMethod": "POST",
-#     "path": "/deletar_dados_cliente",
-#     "body": json.dumps({
-#         "crm_medico": "12345",
-#         "cpf_paciente": "12345678955",
-#         "nome_paciente": "Agamenon Silva"
-#         "email_paciente": "gestaopedidos15@gmail.com",
-#         "email_medico": "arturcavalcante2014.pp@gmail.com"
-#         "horario": "2024-04-04T23:23:23"
-#     })
+#     "path": "/solicitar_agendamento",
+#     "body": "{\"crm_medico\": \"12345\",\"cpf_paciente\": \"12345678955\",\"nome_paciente\": \"Agamenon Silva\",\"email_paciente\": \"gestaopedidos15@gmail.com\",\"email_medico\": \"arturcavalcante2014.pp@gmail.com\",\"horario\": \"2024-04-04T23:23\"}"
 # }
