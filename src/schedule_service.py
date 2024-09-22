@@ -17,7 +17,7 @@ class ScheduleService():
         self.s3_client = boto3.client('s3')
     
     def solicitar_agendamento(self, agendamento: dict) -> str:
-        self.logger.error('Iniciando agendamento')
+        self.logger.info('Iniciando agendamento')
         id = str(uuid.uuid4())  
         horario: str = agendamento["horario"]   
         crm_medico: str = agendamento["crm_medico"]
@@ -57,7 +57,7 @@ class ScheduleService():
         return id
 
 
-    def verificar_status_agendamento(self, agendamento: dict) -> int:
+    def verificar_status_agendamento(self, agendamento: dict) -> str:
         try:
             response = self.s3_client.get_object(
                 Bucket=self.bucket_name,
