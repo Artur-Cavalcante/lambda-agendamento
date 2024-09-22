@@ -2,6 +2,8 @@ import os
 import uuid
 import boto3
 import json
+import pickle
+
 from aws_lambda_powertools import Logger
 
 from src.agendamento_status_enum import AgendamentoStatus
@@ -34,6 +36,14 @@ class ScheduleService():
             email_paciente: email_paciente,
             email_medico: email_medico
         }
+
+        pickled_obj = pickle.dumps(json_agendamento)
+
+        self.s3_client.put_object(
+            Bucket=self.bucket_name,
+            Key=f"{id}.pkl",
+            Body=pickled_obj
+        )
         
         self.logger.info(f"Enviando solicitação agendamento para fila de agendamento.")
         self.sqs_client.send_message(QueueUrl=self.url_fila_agendamento, MessageBody=json.dumps(json_agendamento))
@@ -42,16 +52,16 @@ class ScheduleService():
         return id
 
 
-    def verificar_status_agendamento(self, id_agendamento: str) -> int:
+    def verificar_status_agendamento(self, agendamento: dict) -> int:
         try:
             response = self.s3_client.getObject(
                 Bucket=self.bucket_name,
-                Key=f"{id_agendamento}.pkl"
+                Key=f"{id}.pkl"
             )
             conteudo = response['Body'].read().decode('utf-8')
             result = json.loads(conteudo)
             self.logger.info(f'RESULT arquivo {result}')
             return result["status_agendamento"]
         except Exception as e:
-            print(f'Erro ao ler o arquivo {id_agendamento} do S3: {str(e)}')
+            print(f'Erro ao ler o arquivo {id} do S3: {str(e)}')
             return None
