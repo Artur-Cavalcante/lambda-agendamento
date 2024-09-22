@@ -29,7 +29,7 @@ def lambda_handler(event: APIGatewayProxyEvent, context) -> dict:
                 "body": "Método/Rota não suportado"
             }
     except Exception as e:
-        logger.error(f"An error occurred: {str(e)}")
+        logger.error(f"Occoreu um error ao realizar agendamento: {e}")
         return {
             "status_code": 500,
             "body": f"An error occurred: {str(e)}"
