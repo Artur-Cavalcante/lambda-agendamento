@@ -16,8 +16,8 @@ class ScheduleService():
         self.sqs_client = boto3.client("sqs")
         self.s3_client = boto3.client('s3')
     
-    def solicitar_agendamento(self, agendamento: dict) -> str:
-        self.logger.info('Iniciando agendamento')
+    def solicitar_agendamento(self, agendamento) -> str:
+        self.logger.info(f'Iniciando agendamento {agendamento}')
         id = str(uuid.uuid4())  
         horario: str = agendamento["horario"]   
         crm_medico: str = agendamento["crm_medico"]
