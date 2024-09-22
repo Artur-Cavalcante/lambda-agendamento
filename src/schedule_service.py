@@ -6,8 +6,6 @@ import pickle
 
 from aws_lambda_powertools import Logger
 
-from src.agendamento_status_enum import AgendamentoStatus
-
 class ScheduleService():
     def __init__(self, logger: Logger) -> None:
         self.logger = logger
@@ -22,7 +20,7 @@ class ScheduleService():
         horario: str = agendamento["horario"]   
         crm_medico: str = agendamento["crm_medico"]
         cpf_paciente: str = agendamento["cpf_paciente"]
-        status_agendamento: str = str(AgendamentoStatus.EmAnalise)
+        status_agendamento: str = "EmAnalise"
         nome_paciente: str = agendamento["nome_paciente"],
         email_paciente: str = agendamento["email_paciente"],
         email_medico: str = agendamento["email_medico"]
