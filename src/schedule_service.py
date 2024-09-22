@@ -28,14 +28,14 @@ class ScheduleService():
         email_medico: str = agendamento["email_medico"]
 
         json_agendamento = {
-            id: id,
-            horario: horario,
-            crm_medico: crm_medico,
-            cpf_paciente: cpf_paciente,
-            status_agendamento: status_agendamento,
-            nome_paciente: nome_paciente,
-            email_paciente: email_paciente,
-            email_medico: email_medico
+            id,
+            horario,
+            crm_medico,
+            cpf_paciente,
+            status_agendamento,
+            nome_paciente,
+            email_paciente,
+            email_medico,
         }
 
         self.logger.info(f'JSON Agendamento {json_agendamento}')
