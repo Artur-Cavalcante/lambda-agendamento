@@ -37,13 +37,17 @@ class ScheduleService():
             email_medico: email_medico
         }
 
+        self.logger.info(f'JSON Agendamento {json_agendamento}')
+
         pickled_obj = pickle.dumps(json_agendamento)
 
+        self.logger.info(f'Iniciando put object s3')
         self.s3_client.put_object(
             Bucket=self.bucket_name,
             Key=f"{id}.pkl",
             Body=pickled_obj
         )
+        self.logger.info(f'Finalizado put object s3')
         
         self.logger.info(f"Enviando solicitação agendamento para fila de agendamento.")
         self.sqs_client.send_message(QueueUrl=self.url_fila_agendamento, MessageBody=json.dumps(json_agendamento))
