@@ -63,8 +63,9 @@ class ScheduleService():
             self.logger.info(f'RESULT arquivo {result}')
             return result["status_agendamento"]
         except Exception as e:
-            self.logger.info(e.response.ResponseMetadata.HTTPStatusCode)
-            self.logger.info(e)
+            self.logger.info(f'RESPONSE {e.response}')
+            self.logger.info(f'METAdATA {e.response["response_metadata"]}')
+            self.logger.info(f'STATUS {e.response["response_metadata"]["https_status_code"]}')
             
             if(e.response.ResponseMetadata.HTTPStatusCode == 404):
                 return "Não encontrado"
